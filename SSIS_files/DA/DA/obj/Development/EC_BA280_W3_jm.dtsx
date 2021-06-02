@@ -11,8 +11,8 @@
   DTS:LocaleID="21514"
   DTS:ObjectName="EC_BA280_W3_jm"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{3E33643A-2F26-4960-BA59-DA4E51A96CBF}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{6E4169B2-114A-4E02-BCCD-A2539A3E1BC2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -195,6 +195,16 @@
           DTS:ConnectionString="Data Source=.;Initial Catalog=EC_BA280_DA;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.EC_BA280_DA]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{A806D516-320A-48E3-BB7E-B3050DFD2D4A}"
+      DTS:ObjectName="LocalHost.EC_BA280_DA">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=EC_BA280_DA;Integrated Security=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
@@ -208,6 +218,251 @@
       DTS:ObjectName="Avocado Data Analysis">
       <DTS:Variables />
       <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Avocado Data Analysis\Data profiling task"
+          DTS:CreationName="Microsoft.DataProfilingTask"
+          DTS:Description="Tarea de generación de perfiles de datos"
+          DTS:DTSID="{F22AD0B2-7A84-4C46-B969-538769256219}"
+          DTS:ExecutableType="Microsoft.DataProfilingTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data profiling task"
+          DTS:TaskContact="Data Profiling Task; Microsoft Corporation; SQL Server 2019; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <DataProfilingTaskData
+              Destination="avocado_data_profile.xml">
+              <ProfileInput><![CDATA[<?xml version="1.0" encoding="utf-16"?>
+<DataProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/sqlserver/2008/DataDebugger/">
+  <ProfileVersion>1.0</ProfileVersion>
+  <DataSources />
+  <DataProfileInput>
+    <ProfileMode>Exact</ProfileMode>
+    <Timeout>0</Timeout>
+    <Requests>
+      <ColumnNullRatioProfileRequest ID="NullRatioReq">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+      </ColumnNullRatioProfileRequest>
+      <ColumnStatisticsProfileRequest ID="StatisticsReq">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+      </ColumnStatisticsProfileRequest>
+      <ColumnLengthDistributionProfileRequest ID="LengthDistReq">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+      </ColumnLengthDistributionProfileRequest>
+      <ColumnValueDistributionProfileRequest ID="ValueDistReq">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+        <Option>FrequentValues</Option>
+        <FrequentValueThreshold>0.001</FrequentValueThreshold>
+      </ColumnValueDistributionProfileRequest>
+      <CandidateKeyProfileRequest ID="KeyReq">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <KeyColumns>
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+        </KeyColumns>
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </CandidateKeyProfileRequest>
+      <FunctionalDependencyProfileRequest ID="FDReq">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <DeterminantColumns>
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+        </DeterminantColumns>
+        <DependentColumn IsWildCard="true" />
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <FDStrengthThreshold>0.95</FDStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </FunctionalDependencyProfileRequest>
+      <ColumnNullRatioProfileRequest ID="NullRatioReq1">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+      </ColumnNullRatioProfileRequest>
+      <ColumnStatisticsProfileRequest ID="StatisticsReq1">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+      </ColumnStatisticsProfileRequest>
+      <ColumnLengthDistributionProfileRequest ID="LengthDistReq1">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+      </ColumnLengthDistributionProfileRequest>
+      <ColumnValueDistributionProfileRequest ID="ValueDistReq1">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+        <Option>FrequentValues</Option>
+        <FrequentValueThreshold>0.001</FrequentValueThreshold>
+      </ColumnValueDistributionProfileRequest>
+      <ColumnPatternProfileRequest ID="PatternReq">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+        <MaxNumberOfPatterns>10</MaxNumberOfPatterns>
+        <PercentageDataCoverageDesired>95</PercentageDataCoverageDesired>
+        <CaseSensitive>false</CaseSensitive>
+        <Delimiters> \t\r\n</Delimiters>
+        <Symbols>,.;:-"'`~=&amp;/\\@!?()&lt;&gt;[]{}|#*^%</Symbols>
+        <TagTableName />
+      </ColumnPatternProfileRequest>
+      <CandidateKeyProfileRequest ID="KeyReq1">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <KeyColumns>
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+        </KeyColumns>
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </CandidateKeyProfileRequest>
+      <FunctionalDependencyProfileRequest ID="FDReq1">
+        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <DeterminantColumns>
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+        </DeterminantColumns>
+        <DependentColumn IsWildCard="true" />
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <FDStrengthThreshold>0.95</FDStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </FunctionalDependencyProfileRequest>
+      <ColumnNullRatioProfileRequest ID="NullRatioReq2">
+        <DataSourceID>{A806D516-320A-48E3-BB7E-B3050DFD2D4A}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+      </ColumnNullRatioProfileRequest>
+      <ColumnStatisticsProfileRequest ID="StatisticsReq2">
+        <DataSourceID>{A806D516-320A-48E3-BB7E-B3050DFD2D4A}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+      </ColumnStatisticsProfileRequest>
+      <ColumnLengthDistributionProfileRequest ID="LengthDistReq2">
+        <DataSourceID>{A806D516-320A-48E3-BB7E-B3050DFD2D4A}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+      </ColumnLengthDistributionProfileRequest>
+      <ColumnValueDistributionProfileRequest ID="ValueDistReq2">
+        <DataSourceID>{A806D516-320A-48E3-BB7E-B3050DFD2D4A}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+        <Option>FrequentValues</Option>
+        <FrequentValueThreshold>0.001</FrequentValueThreshold>
+      </ColumnValueDistributionProfileRequest>
+      <ColumnPatternProfileRequest ID="PatternReq1">
+        <DataSourceID>{A806D516-320A-48E3-BB7E-B3050DFD2D4A}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <Column IsWildCard="true" />
+        <MaxNumberOfPatterns>10</MaxNumberOfPatterns>
+        <PercentageDataCoverageDesired>95</PercentageDataCoverageDesired>
+        <CaseSensitive>false</CaseSensitive>
+        <Delimiters> \t\r\n</Delimiters>
+        <Symbols>,.;:-"'`~=&amp;/\\@!?()&lt;&gt;[]{}|#*^%</Symbols>
+        <TagTableName />
+      </ColumnPatternProfileRequest>
+      <CandidateKeyProfileRequest ID="KeyReq2">
+        <DataSourceID>{A806D516-320A-48E3-BB7E-B3050DFD2D4A}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <KeyColumns>
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+        </KeyColumns>
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </CandidateKeyProfileRequest>
+      <FunctionalDependencyProfileRequest ID="FDReq2">
+        <DataSourceID>{A806D516-320A-48E3-BB7E-B3050DFD2D4A}</DataSourceID>
+        <Table Schema="dbo" Table="avocado" />
+        <DeterminantColumns>
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+          <Column IsWildCard="true" />
+        </DeterminantColumns>
+        <DependentColumn IsWildCard="true" />
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <FDStrengthThreshold>0.95</FDStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </FunctionalDependencyProfileRequest>
+    </Requests>
+  </DataProfileInput>
+  <DataProfileOutput>
+    <Profiles />
+  </DataProfileOutput>
+</DataProfile>]]></ProfileInput>
+            </DataProfilingTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Avocado Data Analysis\Load target"
           DTS:CreationName="Microsoft.Pipeline"
@@ -984,176 +1239,6 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Avocado Data Analysis\Tarea de generación de perfiles de datos"
-          DTS:CreationName="Microsoft.DataProfilingTask"
-          DTS:Description="Tarea de generación de perfiles de datos"
-          DTS:DTSID="{F22AD0B2-7A84-4C46-B969-538769256219}"
-          DTS:ExecutableType="Microsoft.DataProfilingTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Tarea de generación de perfiles de datos"
-          DTS:TaskContact="Data Profiling Task; Microsoft Corporation; SQL Server 2019; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <DataProfilingTaskData
-              Destination="avocado_data_profile.xml">
-              <ProfileInput><![CDATA[<?xml version="1.0" encoding="utf-16"?>
-<DataProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/sqlserver/2008/DataDebugger/">
-  <ProfileVersion>1.0</ProfileVersion>
-  <DataSources />
-  <DataProfileInput>
-    <ProfileMode>Exact</ProfileMode>
-    <Timeout>0</Timeout>
-    <Requests>
-      <ColumnNullRatioProfileRequest ID="NullRatioReq">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <Column IsWildCard="true" />
-      </ColumnNullRatioProfileRequest>
-      <ColumnStatisticsProfileRequest ID="StatisticsReq">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <Column IsWildCard="true" />
-      </ColumnStatisticsProfileRequest>
-      <ColumnLengthDistributionProfileRequest ID="LengthDistReq">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <Column IsWildCard="true" />
-        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
-        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
-      </ColumnLengthDistributionProfileRequest>
-      <ColumnValueDistributionProfileRequest ID="ValueDistReq">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <Column IsWildCard="true" />
-        <Option>FrequentValues</Option>
-        <FrequentValueThreshold>0.001</FrequentValueThreshold>
-      </ColumnValueDistributionProfileRequest>
-      <CandidateKeyProfileRequest ID="KeyReq">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <KeyColumns>
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-        </KeyColumns>
-        <ThresholdSetting>Specified</ThresholdSetting>
-        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
-        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
-        <MaxNumberOfViolations>100</MaxNumberOfViolations>
-      </CandidateKeyProfileRequest>
-      <FunctionalDependencyProfileRequest ID="FDReq">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <DeterminantColumns>
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-        </DeterminantColumns>
-        <DependentColumn IsWildCard="true" />
-        <ThresholdSetting>Specified</ThresholdSetting>
-        <FDStrengthThreshold>0.95</FDStrengthThreshold>
-        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
-        <MaxNumberOfViolations>100</MaxNumberOfViolations>
-      </FunctionalDependencyProfileRequest>
-      <ColumnNullRatioProfileRequest ID="NullRatioReq1">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <Column IsWildCard="true" />
-      </ColumnNullRatioProfileRequest>
-      <ColumnStatisticsProfileRequest ID="StatisticsReq1">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <Column IsWildCard="true" />
-      </ColumnStatisticsProfileRequest>
-      <ColumnLengthDistributionProfileRequest ID="LengthDistReq1">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <Column IsWildCard="true" />
-        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
-        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
-      </ColumnLengthDistributionProfileRequest>
-      <ColumnValueDistributionProfileRequest ID="ValueDistReq1">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <Column IsWildCard="true" />
-        <Option>FrequentValues</Option>
-        <FrequentValueThreshold>0.001</FrequentValueThreshold>
-      </ColumnValueDistributionProfileRequest>
-      <ColumnPatternProfileRequest ID="PatternReq">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <Column IsWildCard="true" />
-        <MaxNumberOfPatterns>10</MaxNumberOfPatterns>
-        <PercentageDataCoverageDesired>95</PercentageDataCoverageDesired>
-        <CaseSensitive>false</CaseSensitive>
-        <Delimiters> \t\r\n</Delimiters>
-        <Symbols>,.;:-"'`~=&amp;/\\@!?()&lt;&gt;[]{}|#*^%</Symbols>
-        <TagTableName />
-      </ColumnPatternProfileRequest>
-      <CandidateKeyProfileRequest ID="KeyReq1">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <KeyColumns>
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-        </KeyColumns>
-        <ThresholdSetting>Specified</ThresholdSetting>
-        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
-        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
-        <MaxNumberOfViolations>100</MaxNumberOfViolations>
-      </CandidateKeyProfileRequest>
-      <FunctionalDependencyProfileRequest ID="FDReq1">
-        <DataSourceID>{9C71353A-E1C0-40AA-B1F6-8DD1DBDE88D5}</DataSourceID>
-        <Table Schema="dbo" Table="avocado" />
-        <DeterminantColumns>
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-          <Column IsWildCard="true" />
-        </DeterminantColumns>
-        <DependentColumn IsWildCard="true" />
-        <ThresholdSetting>Specified</ThresholdSetting>
-        <FDStrengthThreshold>0.95</FDStrengthThreshold>
-        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
-        <MaxNumberOfViolations>100</MaxNumberOfViolations>
-      </FunctionalDependencyProfileRequest>
-    </Requests>
-  </DataProfileInput>
-  <DataProfileOutput>
-    <Profiles />
-  </DataProfileOutput>
-</DataProfile>]]></ProfileInput>
-            </DataProfilingTaskData>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
           DTS:refId="Package\Avocado Data Analysis\Truncate target"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Tarea Ejecutar SQL"
@@ -1226,8 +1311,8 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="267.2,41.6"
-          Id="Package\Avocado Data Analysis\Tarea de generación de perfiles de datos"
+          Size="161.6,41.6"
+          Id="Package\Avocado Data Analysis\Data profiling task"
           TopLeft="195.733325551616,115.30000126044" />
         <ContainerLayout
           HeaderHeight="43"
