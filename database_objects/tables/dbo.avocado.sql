@@ -1,4 +1,4 @@
-USE [LDSBC_BA280_DA]
+USE [EC_BA280_DA]
 GO
 
 /****** Object:  Table [dbo].[avocado]    Script Date: 1/26/2020 4:56:24 PM ******/
